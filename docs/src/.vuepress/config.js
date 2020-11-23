@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Vuepress Docs Boilerplate',
+  title: '樹的技術隨筆',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -36,11 +36,11 @@ module.exports = {
     lastUpdated: false,
     nav: [
       {
-        text: 'Guide',
+        text: '教學',
         link: '/guide/',
       },
       {
-        text: 'Config',
+        text: '設定',
         link: '/config/'
       },
       {
@@ -48,18 +48,6 @@ module.exports = {
         link: 'https://v1.vuepress.vuejs.org'
       }
     ],
-    sidebar: {
-      '/guide/': [
-        {
-          title: 'Guide',
-          collapsable: false,
-          children: [
-            '',
-            'using-vue',
-          ]
-        }
-      ],
-    }
   },
 
   /**
@@ -67,6 +55,8 @@ module.exports = {
    */
   plugins: [
     '@vuepress/plugin-back-to-top',
-    '@vuepress/plugin-medium-zoom',
+    '@vuepress/plugin-medium-zoom',  // medium-zoom options here , See: https://github.com/francoischalifour/medium-zoom#options
+    '@vuepress/plugin-search',
+    'vuepress-plugin-smooth-scroll',
   ]
 }

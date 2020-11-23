@@ -17,7 +17,7 @@ features:
 footer: Made by andrew with ❤️
 title: index
 date: 2020-11-23 11:11:42
-permalink: /pages/bab7a9/
+permalink: /
 categories: 
   - src
 tags: 
