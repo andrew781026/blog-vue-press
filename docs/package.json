@@ -1,0 +1,20 @@
+{
+  "name": "blog-vue-press",
+  "version": "0.0.1",
+  "description": "tree tech articles for record",
+  "main": "index.js",
+  "authors": {
+    "name": "andrew",
+    "email": "andrew7810262000@gmail.com"
+  },
+  "repository": "https://github.com/andrew781026/blog-vue-press.git/blog-vue-press",
+  "scripts": {
+    "dev": "vuepress dev src --port 8013",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3",
+    "vuepress-theme-vdoing": "^1.5.1"
+  }
+}
