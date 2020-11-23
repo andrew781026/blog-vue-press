@@ -63,7 +63,7 @@ module.exports = {
       link: 'https://github.com/andrew781026' // 可选的
     },
     blogger: { // 博主信息，显示在首页侧边栏
-      avatar: 'https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200103123203.jpg',
+      avatar: '/img/tree.png',
       name: 'Andrew Tree',
       slogan: '奇樹闖前端'
     },
@@ -153,6 +153,7 @@ module.exports = {
       'disqus',
       {
         shortname:"andrew-vuepress",
+        language:"zh-tw",
       }
     ],
     [
