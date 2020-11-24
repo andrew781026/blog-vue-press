@@ -64,6 +64,7 @@ module.exports = {
     },
     blogger: { // 博主信息，显示在首页侧边栏
       avatar: '/img/tree.png',
+      title: '這是我的頭像 (*・ω・)ﾉ',
       name: 'Andrew Tree',
       slogan: '奇樹闖前端'
     },
@@ -94,7 +95,7 @@ module.exports = {
   },
   plugins: [ // 插件
     [require('./plugins/love-me'), { // 鼠标点击爱心特效
-      color: '#11a8cd', // 爱心颜色，默认随机色
+      color: '#f12f0f', // 爱心颜色，默认随机色
       excludeClassName: 'theme-vdoing-content' // 要排除元素的class, 默认空''
     }],
 
