@@ -150,7 +150,7 @@ const board =
         , [".", ".", ".", "4", "1", "9", ".", ".", "5"]
         , [".", ".", ".", ".", "8", ".", ".", "7", "9"]];
 
-console.log(isValidSudoku(board))
+// console.log(isValidSudoku(board))
 
 
 /**
@@ -180,3 +180,19 @@ var findMaxConsecutiveOnes = function (nums) {
 
     return maxLength;
 };
+
+
+// 最佳解答
+var findDuplicates = function (nums) {
+    const res = [];
+    for (let i = 0; i < nums.length; i++) {
+        const index = Math.abs(nums[i]) - 1;
+        if (nums[index] < 0) {
+            res.push(Math.abs(index + 1));
+        }
+        nums[index] = -nums[index];
+    }
+    return res;
+};
+
+console.log(findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]))
