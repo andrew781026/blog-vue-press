@@ -118,7 +118,6 @@ var isValidSudoku = function (board) {
 
     for (let i = 0; i < rowNo.length; i++) {
 
-        // console.log('i=', i);
         if (!validRow(rowNo[i])) return false;
     }
 
@@ -132,7 +131,6 @@ var isValidSudoku = function (board) {
 
     for (let k = 0; k < leftTopPoints.length; k++) {
 
-        console.log('k=', k);
         if (!validSquare(leftTopPoints[k])) return false;
     }
 
@@ -151,7 +149,6 @@ const board =
         , [".", ".", ".", ".", "8", ".", ".", "7", "9"]];
 
 // console.log(isValidSudoku(board))
-
 
 /**
  * @param {number[]} nums
@@ -181,9 +178,8 @@ var findMaxConsecutiveOnes = function (nums) {
     return maxLength;
 };
 
-
 // 最佳解答
-var findDuplicates = function (nums) {
+var findDuplicates02 = function (nums) {
     const res = [];
     for (let i = 0; i < nums.length; i++) {
         const index = Math.abs(nums[i]) - 1;
@@ -195,4 +191,188 @@ var findDuplicates = function (nums) {
     return res;
 };
 
-console.log(findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]))
+// console.log(findDuplicates02([4, 3, 2, 7, 8, 2, 3, 1]))
+
+var findDisappearedNumbers = function (nums) {
+
+    const result = [];
+    const temp = new Array(nums.length).fill('*');
+
+    for (let i = 0; i < nums.length; i++) {
+        temp[nums[i] - 1] = nums[i];
+    }
+
+    for (let j = 0; j < temp.length; j++) {
+
+        if (temp[j] === '*') result.push(j + 1)
+    }
+
+    return result;
+};
+
+// console.log(findDisappearedNumbers([4, 3, 2, 7, 8, 2, 3, 1]))
+
+var frequencySort = function (s) {
+
+    /* Output :
+       {
+          t: { char: 't', frequency: 1, firstIndex: 0 },
+          r: { char: 'r', frequency: 1, firstIndex: 1 },
+          e: { char: 'e', frequency: 2, firstIndex: 2 }
+        }
+    * */
+    const findFrequency = s => {
+
+        const result = {};
+        const arr = s.split('');
+
+        for (let i = 0; i < arr.length; i++) {
+
+            const char = arr[i];
+
+            if (result[char]) {
+
+                result[char] = {
+                    char,
+                    frequency: result[char].frequency + 1,
+                    firstIndex: result[char].firstIndex,
+                }
+
+            } else {
+
+                result[char] = {
+                    char,
+                    frequency: 1,
+                    firstIndex: i,
+                }
+            }
+        }
+
+        return result;
+    }
+
+    // Output : [ <1 empty item>, [ 't', 'r' ], [ 'e' ] ]
+    const convertObjToArr = obj => {
+
+        const arr = Object.values(obj);
+        const result = [];
+
+        for (let i = 0; i < arr.length; i++) {
+
+            const curr = arr[i];
+
+            if (result[curr.frequency]) {
+
+                result[curr.frequency].push(curr.char)
+
+            } else {
+
+                result[curr.frequency] = [curr.char]
+            }
+        }
+
+        return result;
+    }
+
+    // Output : eetr
+    const convertArrToStr = arr => {
+
+        let result = '';
+
+        for (let i = arr.length - 1; i >= 0; i--) {
+
+            const curr = arr[i];
+
+            if (curr) {
+
+                for (let j = 0; j < curr.length; j++) {
+
+                    const char = curr[j];
+                    result = result + char.repeat(i)
+                }
+            }
+        }
+
+        return result;
+    }
+
+    // 出現頻率高的放左側 , 相同頻率者 , 放左側 , 大小寫不相同
+    return convertArrToStr(convertObjToArr(findFrequency(s)))
+};
+
+const findFrequency = s => {
+
+    const result = {};
+    const arr = s.split('');
+
+    for (let i = 0; i < arr.length; i++) {
+
+        const char = arr[i];
+
+        if (result[char]) {
+
+            result[char] = {
+                char,
+                frequency: result[char].frequency + 1,
+                firstIndex: result[char].firstIndex,
+            }
+
+        } else {
+
+            result[char] = {
+                char,
+                frequency: 1,
+                firstIndex: i,
+            }
+        }
+    }
+
+    return result;
+}
+
+const convertObjToArr = obj => {
+
+    const arr = Object.values(obj);
+    const result = [];
+
+    for (let i = 0; i < arr.length; i++) {
+
+        const curr = arr[i];
+
+        if (result[curr.frequency]) {
+
+            result[curr.frequency].push(curr.char)
+
+        } else {
+
+            result[curr.frequency] = [curr.char]
+        }
+    }
+
+    return result;
+}
+
+const convertArrToStr = arr => {
+
+    let result = '';
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+
+        const curr = arr[i];
+
+        if (curr) {
+
+            for (let j = 0; j < curr.length; j++) {
+
+                const char = curr[j];
+                result = result + char.repeat(i)
+            }
+        }
+    }
+
+    return result;
+}
+
+console.log(findFrequency('tree'))
+console.log(convertObjToArr(findFrequency('tree')))
+console.log(convertArrToStr(convertObjToArr(findFrequency('tree'))))
