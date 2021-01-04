@@ -18,7 +18,7 @@ function ListNode(val, next) {
  * @param {ListNode} head
  * @return {ListNode}
  */
-var sortList = function (head) {
+const sortList = function (head) {
 
     if (!head) return head;
 
@@ -120,6 +120,96 @@ function ArrayToListNode(arr) {
 }
 
 let head3 = ArrayToListNode([-1, 5, 3, 4, 0]);
-const output3 = sortList(head3);
-LogListNode(output3);
+// const output3 = sortList(head3);
+// LogListNode(output3);
 
+var swap = function (i, j) {
+    const temp = i.val;
+    i.val = j.val;
+    j.val = temp;
+};
+
+const findMin = function (head) {
+
+    let min = head;
+    let curr = head;
+
+    while (curr) {
+
+        if (curr.val < min.val) min = curr;
+
+        curr = curr.next;
+    }
+
+    return min;
+}
+
+const selectionSort = function (head) {
+
+    if (!head) return head;
+
+    let curr = head;
+
+    while (curr) {
+
+        const min = findMin(curr);
+        swap(curr, min);
+
+        curr = curr.next;
+    }
+
+    return head;
+};
+
+// LogListNode(selectionSort(head3));
+
+const bubbleSort = function (head) {
+
+    if (!head) return head;
+
+    let outer = head;
+    let inner = head;
+    let last;
+    let swapFlag;
+
+    while (outer.next) {
+
+        swapFlag = false;
+        inner = outer;
+
+        while (inner.next) {
+
+            const next = inner.next;
+
+            if (next === last) {
+
+                last = inner;
+                break;
+
+            } else if (next.val < inner.val) {
+
+                swapFlag = true;
+                swap(inner, next);
+            }
+
+            // console.log(`(next,last)=(${next?.val},${last?.val})`);
+
+            if (!next.next) {
+
+                last = next;
+                break;
+
+            } else inner = next;
+        }
+
+        // 如果跑一次 , 都沒有 swap , 可提前結束
+        // console.log(`(outer,last)=(${outer.val},${last?.val})`);
+        // console.log('\n----------------\n')
+        if (!swapFlag) return head;
+    }
+
+    return head;
+};
+
+LogListNode(bubbleSort(head3));
+LogListNode(bubbleSort(ArrayToListNode([96, 96, 76, 31, 83, 22, 31, 27, 36, 72])));
