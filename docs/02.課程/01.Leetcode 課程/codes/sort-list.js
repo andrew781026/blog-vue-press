@@ -78,14 +78,17 @@ function MiddleInsert(listNode, num) {
 function LogListNode(listNode) {
 
     let curr = listNode;
+    let msg = '';
 
     while (curr) {
 
         const next = curr.next;
-        console.log(curr.val);
+        msg += ` -> ${curr.val}`
 
         curr = next;
     }
+
+    console.log(msg);
 }
 
 let head = ArrayToListNode([4, 2, 1, 3]);
@@ -129,6 +132,15 @@ var swap = function (i, j) {
     j.val = temp;
 };
 
+const linkSwap = function (prev, curr) {
+
+    const next = curr.next;
+    console.log(`Before : (prev,curr,next)=(${prev.val},${curr.val},${next?.val})`);
+    curr.next = prev;
+    prev.next = next;
+    console.log(`---After : (prev,curr,next)=(${curr.val},${curr.next?.val},${curr.next?.next?.val})`);
+};
+
 const findMin = function (head) {
 
     let min = head;
@@ -163,12 +175,14 @@ const selectionSort = function (head) {
 
 // LogListNode(selectionSort(head3));
 
+// TODO : 完成 LinkList 版本的 bubbleSort
 const bubbleSort = function (head) {
 
     if (!head) return head;
 
     let outer = head;
     let inner = head;
+    let first = head;
     let last;
     let swapFlag;
 
@@ -180,6 +194,7 @@ const bubbleSort = function (head) {
         while (inner.next) {
 
             const next = inner.next;
+            const secondNext = next.next;
 
             if (next === last) {
 
@@ -188,13 +203,15 @@ const bubbleSort = function (head) {
 
             } else if (next.val < inner.val) {
 
+                if (inner === first) first = next
                 swapFlag = true;
-                swap(inner, next);
+                // swap(inner, next);
+                linkSwap(inner, next);
             }
 
             // console.log(`(next,last)=(${next?.val},${last?.val})`);
 
-            if (!next.next) {
+            if (!secondNext) {
 
                 last = next;
                 break;
@@ -205,10 +222,10 @@ const bubbleSort = function (head) {
         // 如果跑一次 , 都沒有 swap , 可提前結束
         // console.log(`(outer,last)=(${outer.val},${last?.val})`);
         // console.log('\n----------------\n')
-        if (!swapFlag) return head;
+        if (!swapFlag) return first;
     }
 
-    return head;
+    return first;
 };
 
 LogListNode(bubbleSort(head3));
