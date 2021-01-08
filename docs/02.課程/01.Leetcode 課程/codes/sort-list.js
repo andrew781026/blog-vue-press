@@ -175,58 +175,50 @@ const selectionSort = function (head) {
 
 // LogListNode(selectionSort(head3));
 
-// TODO : 完成 LinkList 版本的 bubbleSort
-const bubbleSort = function (head) {
+const arraySort = function (head) {
 
     if (!head) return head;
 
-    let outer = head;
-    let inner = head;
-    let first = head;
-    let last;
-    let swapFlag;
+    // make ListNode to array
+    const listNodeToArray = head => {
 
-    while (outer.next) {
+        const result = [];
 
-        swapFlag = false;
-        inner = outer;
+        let curr = head;
 
-        while (inner.next) {
+        while (curr) {
 
-            const next = inner.next;
-            const secondNext = next.next;
-
-            if (next === last) {
-
-                last = inner;
-                break;
-
-            } else if (next.val < inner.val) {
-
-                if (inner === first) first = next
-                swapFlag = true;
-                // swap(inner, next);
-                linkSwap(inner, next);
-            }
-
-            // console.log(`(next,last)=(${next?.val},${last?.val})`);
-
-            if (!secondNext) {
-
-                last = next;
-                break;
-
-            } else inner = next;
+            result.push(curr.val);
+            curr = curr.next;
         }
 
-        // 如果跑一次 , 都沒有 swap , 可提前結束
-        // console.log(`(outer,last)=(${outer.val},${last?.val})`);
-        // console.log('\n----------------\n')
-        if (!swapFlag) return first;
+        return result;
     }
 
-    return first;
-};
+    // create new listNode using array
+    const ArrayToListNode = arr => {
 
-LogListNode(bubbleSort(head3));
-LogListNode(bubbleSort(ArrayToListNode([96, 96, 76, 31, 83, 22, 31, 27, 36, 72])));
+        if (!(arr && arr.length > 0)) return null;
+
+        let result = new ListNode(arr[0]);
+        let curr = result;
+
+        for (let i = 1; i < arr.length; i++) {
+
+            const temp = new ListNode(arr[i]);
+            curr.next = temp;
+            curr = temp;
+        }
+
+        return result;
+    }
+
+    const arr = listNodeToArray(head);
+    arr.sort((a, b) => a - b);
+
+    return ArrayToListNode(arr);
+}
+
+LogListNode(arraySort(head))
+LogListNode(arraySort(head3))
+
