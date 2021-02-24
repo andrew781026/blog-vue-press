@@ -1,3 +1,12 @@
+---
+title: resume
+date: 2021-01-11 10:46:27
+permalink: /pages/ecbb03/
+categories:
+  - 關於我
+tags:
+  - 
+---
 # 王澍 ( Andrew ) 的履歷表
 
 ###### tags : `personal` 
