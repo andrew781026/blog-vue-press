@@ -1,5 +1,3 @@
-
-
 # 安裝 make 指令
 apt-get update && apt-get install build-essential -y
 
